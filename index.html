@@ -816,7 +816,7 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             liff.init({
-                liffId: ''
+                liffId: '2007435281-RvLp1mQn'
             }).then(() => {
                 console.log('LIFF初期化成功');
             }).catch((err) => {
@@ -1173,7 +1173,7 @@
             // LINEトークにメッセージを送信
             liff.sendMessages([{
                 type: 'text',
-                text: `【予約フォーム】\n指名：店長\nお名前：${formData.name}\n電話番号：${formData.phone}\nご来店回数：${formData.visitCount}\n指名：店長\nメニュー：${formData.selectedSymptom},${formData.irradiationsCount}\n希望日時：\n ${formData.dates[0]}\nメッセージ：${formData.message}`
+                text: `【予約フォーム】\n指名：店長\nお名前：${formData.name}\n電話番号：${formData.phone}\nご来店回数：${formData.visitCount}\nメニュー：${formData.selectedSymptom},${formData.irradiationsCount}\n希望日時：\n ${formData.dates[0]}\nメッセージ：${formData.message}`
             }]).then(() => {
                 /* メッセージ送信成功時の処理 */
                 alert('当日キャンセルは無いようにお願いいたします。キャンセル料発生いたします。');
@@ -1205,7 +1205,7 @@
                 return;
             }
 
-            const url = 'https://script.google.com/macros/s/AKfycbwCxnJaxGZ46c3TnnesuZcD_zuxuVoSHoDHo5MxkRzChcK5vZDwBs4HstzkXO-KLyuDYA/exec' +
+            const url = 'https://script.google.com/macros/s/AKfycbyYbIV_nYRZfRkq9s7ur9GnMbDhBA3FpeySISzbABfVqvlt9nydSrKLsJ-KpFl1MVL1rw/exec' +
                 `?startTime=${startTime.toISOString()}&endTime=${endTime.toISOString()}`;
 
             try {
@@ -1283,9 +1283,9 @@
             // 現在の日時を取得
             const now = new Date();
 
-            // ✖にする期限を設定：今日から21日後
+            // ✖にする期限を設定：今日から10日後
             const limitDate = new Date(now);
-            limitDate.setDate(now.getDate() + 30);
+            limitDate.setDate(now.getDate() + 10);
 
             // テーブルの内容を更新
             for (let i = 0; i < 7; i++) {
@@ -1315,14 +1315,8 @@ const dayOfWeek = day.getDay();  // 曜日を取得（0=日曜, 1=月曜, ..., 6
 const nowHour = now.getHours();
 const nowMinute = now.getMinutes();
 const nowTime = nowHour * 60 + nowMinute;
-const startLimit = 9 * 60;
-const endLimit = 19 * 60;
-
-if (dayOfWeek !== 1 && nowTime >= startLimit && nowTime < endLimit) {
-    cell.textContent = '✕';
-    cell.classList.add('unavailable');
-    continue;
-}
+const startLimit = 9 * 60 + 30;   // 9:30
+const endLimit = 19 * 60;         // 18:00
 
                     const slotStart = new Date(day);
                     slotStart.setHours(parseInt(times[j].split(':')[0]), parseInt(times[j].split(':')[1]), 0, 0);
